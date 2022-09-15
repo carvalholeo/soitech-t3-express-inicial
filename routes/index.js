@@ -8,8 +8,12 @@ route.get('/contato', function(req, res) {
   res.send('Página de contato');
 });
 
-route.use('/users', userRoutes)
+route.use('/users', userRoutes);
 
+route.get('/:nomeVariavel', function(req, res) {
+  console.log(req.query)
+  res.send(`Informação que chegou na rota: ${req.params.nomeVariavel}`);
+});
 
 
 module.exports = route;
