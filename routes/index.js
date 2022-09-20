@@ -10,8 +10,10 @@ route.get('/contato', function(req, res) {
 
 route.use('/users', userRoutes);
 
-route.get('/:nomeVariavel', function(req, res) {
-  console.log(req.query)
+route.post('/:nomeVariavel', function(req, res) {
+  console.log('query', req.query)
+  console.log('body', req.body)
+  console.log('headers', req.headers)
   res.send(`Informação que chegou na rota: ${req.params.nomeVariavel}`);
 });
 
