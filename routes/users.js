@@ -1,17 +1,13 @@
 const { Router } = require('express');
 
+const usersController = require('../controllers/usersController')
+
 const route = Router();
 
-route.get('/', (req, res) => {
-  res.send('Este é um usuário')
-});
+route.get('/', usersController.base);
 
-route.get('/cadastro', (req, res) => {
-  res.send('Envie no método POST os dados do cadastro')
-});
+route.get('/cadastro', usersController.formularioCadastro);
 
-route.post('/cadastro', (req, res) => {
-  res.send('recebido')
-});
+route.post('/cadastro', usersController.cadastrar);
 
 module.exports = route;
