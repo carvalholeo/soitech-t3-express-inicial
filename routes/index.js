@@ -9,7 +9,5 @@ route.get('/contato', contatoController.paginaContato);
 
 route.use('/users', userRoutes);
 
-route.post('/:nomeVariavel', contatoController.rotaVariavel);
-
 
 module.exports = route;
