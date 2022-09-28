@@ -7,6 +7,12 @@ const usersController = {
   },
   cadastrar: (req, res) => {
     res.send('recebido')
+  },
+  atualizar: (req, res) => {
+    return res.send('OK atualizou usuários');
+  },
+  delete: (req, res) => {
+    return res.send('usuário excluído com sucesso')
   }
 };
 
