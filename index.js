@@ -12,7 +12,7 @@ app.use(function(req, res, next){
   next();
 });
 
-const estaDeslogado = true;
+const estaDeslogado = false;
 
 app.use((req, res, next) => {
   if (estaDeslogado) {
@@ -21,7 +21,15 @@ app.use((req, res, next) => {
   next();
 });
 
-// Criar uma constante para identificar se o sistema está ou não em manutenção
+const modoManutencao = true;
+app.use((req, res, next) => {
+  if (modoManutencao) {
+    return res.json('Oops, sistema em manutenção. Vá ler um livro.');
+  }
+  next();
+});
+
+// Criar uma constante para identificar se o sistema está ou não em manutenção - OK
 // Criar um middleware global que verifica essa constante
 // Cortar a requisição se o sistema estiver em manutenção
 // Avançar a requisição caso o sistema esteja operante
