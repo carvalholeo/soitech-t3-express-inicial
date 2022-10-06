@@ -6,6 +6,7 @@ const usersController = {
     res.send('Envie no método POST os dados do cadastro')
   },
   cadastrar: (req, res) => {
+    console.log(req.body)
     res.send('recebido')
   },
   atualizar: (req, res) => {
