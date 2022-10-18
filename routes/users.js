@@ -2,13 +2,14 @@ const { Router } = require('express');
 
 const usersController = require('../controllers/usersController');
 const validatorMiddleware = require('../middlewares/validatorMiddleware');
-const arrayDeValidacao = require('../validators/cadastroUsuario');
+const validacaoCadastro = require('../validators/cadastroUsuario');
+const loginValidator = require('../validators/loginValidator');
 
 const route = Router();
 
 route.get('/', usersController.base);
-route.get('/cadastro', usersController.formularioCadastro);
-route.post('/', arrayDeValidacao, validatorMiddleware, usersController.cadastrar);
+route.get('/:idDoUsuario', usersController.base);
+route.post('/', validacaoCadastro, validatorMiddleware, usersController.cadastrar);
 route.patch('/', usersController.atualizar);
 route.delete('/', usersController.delete);
 

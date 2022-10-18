@@ -5,13 +5,9 @@ const ordensDeServicosController = require('../controllers/ordensDeServicosContr
 const route = Router();
 
 route.get('/', ordensDeServicosController.base);
-
-//rotas a criar: excluir
-
+route.get('/:idDaOrdemDeServico', ordensDeServicosController.base);
 route.post('/', ordensDeServicosController.cadastrar);
-
 route.patch('/', ordensDeServicosController.atualizar);
-
 route.delete("/", ordensDeServicosController.delete);
 
 module.exports = route;
