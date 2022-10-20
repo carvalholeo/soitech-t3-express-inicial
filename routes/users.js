@@ -15,8 +15,8 @@ route.delete('/:idDoUsuario', usersController.delete); // apagar um usuário
 
 module.exports = route;
 
-// criar função que lê o arquivo e devolve o array de objetos
-// exportar a função no final da model
-// importar no controller
-// executar a função dentro do controller 'base'
-// enviar a lista para o cliente (Insomnia)
+// criar função que lê o arquivo e devolve o array de objetos - OK
+// exportar a função no final da model - ok
+// importar no controller - ok
+// executar a função dentro do controller 'base' - ok
+// enviar a lista para o cliente (Insomnia) - ok

@@ -1,10 +1,10 @@
-const {cadastroUsuario, buscarUmUsuario} = require('../models/usuariosModel');
+const {cadastroUsuario, buscarUmUsuario, listaDeUsuarios, excluirUsuario} = require('../models/usuariosModel');
 
 const usersController = {
   base: (req, res) => {
-    const usuario = buscarUmUsuario(idDoUsuario);
+    const usuarios = listaDeUsuarios();
 
-    res.json(usuario)
+    res.json(usuarios)
   },
   buscarUmUsuario: (req, res) => {
     const {idDoUsuario} = req.params;
@@ -16,14 +16,16 @@ const usersController = {
     res.send('Envie no método POST os dados do cadastro')
   },
   cadastrar: (req, res) => {
-    cadastroUsuario(req.body);
-    res.send('recebido')
+    const novoUsuario = cadastroUsuario(req.body);
+    res.json(novoUsuario);
   },
   atualizar: (req, res) => {
     return res.send('OK atualizou usuários');
   },
   delete: (req, res) => {
-    return res.send('usuário excluído com sucesso')
+    const {idDoUsuario} = req.params;
+    excluirUsuario(idDoUsuario);
+    return res.json('usuário com id '+ idDoUsuario +' excluído com sucesso')
   }
 };
 

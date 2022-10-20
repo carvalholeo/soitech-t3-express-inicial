@@ -57,8 +57,39 @@ function buscarUmUsuario(id) {
   }
 }
 
+function listaDeUsuarios() {
+  try {
+    const usuariosJson = fs.readFileSync(__dirname + '/usuarios.json', { encoding: 'utf8' });
+    const usuarios = JSON.parse(usuariosJson).usuarios;
+
+    return usuarios
+  } catch (error) {
+    console.trace(error);
+    return error;
+  }
+}
+
+function excluirUsuario(id) {
+  try {
+    const usuariosJson = fs.readFileSync(__dirname + '/usuarios.json', {encoding: 'utf-8'})
+    const usuariosParse = JSON.parse(usuariosJson);
+    const usuarios = usuariosParse.usuarios;
+
+    const dadosFiltrados = usuarios.filter(user => user.id !== Number(id));
+
+    usuariosParse.usuarios = dadosFiltrados;
+
+    fs.writeFileSync(__dirname + '/usuarios.json', JSON.stringify(usuariosParse));
+  } catch (error) {
+    console.trace(error);
+    return error;
+  }
+}
+
 
 module.exports = {
   cadastroUsuario,
-  buscarUmUsuario
+  buscarUmUsuario,
+  listaDeUsuarios,
+  excluirUsuario
 };
