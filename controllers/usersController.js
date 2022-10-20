@@ -2,6 +2,11 @@ const {cadastroUsuario, buscarUmUsuario} = require('../models/usuariosModel');
 
 const usersController = {
   base: (req, res) => {
+    const usuario = buscarUmUsuario(idDoUsuario);
+
+    res.json(usuario)
+  },
+  buscarUmUsuario: (req, res) => {
     const {idDoUsuario} = req.params;
     const usuario = buscarUmUsuario(idDoUsuario);
 

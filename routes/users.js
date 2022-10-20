@@ -7,10 +7,10 @@ const loginValidator = require('../validators/loginValidator');
 
 const route = Router();
 
-route.get('/', usersController.base);
-route.get('/:idDoUsuario', usersController.base);
-route.post('/', validacaoCadastro, validatorMiddleware, usersController.cadastrar);
-route.patch('/', usersController.atualizar);
-route.delete('/', usersController.delete);
+route.get('/', usersController.base); // listar todos os usuarios
+route.get('/:idDoUsuario', usersController.buscarUmUsuario); // implementado
+route.post('/', validacaoCadastro, validatorMiddleware, usersController.cadastrar); // implementado
+route.patch('/:idDoUsuario', usersController.atualizar); // atualizar um usuario
+route.delete('/:idDoUsuario', usersController.delete); // apagar um usuário
 
 module.exports = route;
