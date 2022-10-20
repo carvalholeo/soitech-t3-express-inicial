@@ -1,0 +1,24 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Leo Carvalho",
+      "email": "leermhfgrejeo@leo.com",
+      "senha": "LeoCarvalho@123",
+      "cpf": "73153231044",
+      "telefone": "+55 13 92345678",
+      "usuario": "carvalho_leo",
+      "dataNascimento": "1995-04-28"
+    },
+    {
+      "id": 2,
+      "nome": "Leo Carvalho",
+      "email": "leo@leocarvalho.dev",
+      "senha": "joaninhaDOFILMEINSETOS@123",
+      "cpf": "92926698003",
+      "telefone": "+55 13 92345678",
+      "usuario": "carvalho_leo",
+      "dataNascimento": "1995-06-30"
+    }
+  ]
+}

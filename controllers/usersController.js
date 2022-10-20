@@ -1,12 +1,17 @@
+const {cadastroUsuario, buscarUmUsuario} = require('../models/usuariosModel');
+
 const usersController = {
   base: (req, res) => {
-    res.send('Este é um usuário')
+    const {idDoUsuario} = req.params;
+    const usuario = buscarUmUsuario(idDoUsuario);
+
+    res.json(usuario)
   },
   formularioCadastro: (req, res) => {
     res.send('Envie no método POST os dados do cadastro')
   },
   cadastrar: (req, res) => {
-    console.log(req.body)
+    cadastroUsuario(req.body);
     res.send('recebido')
   },
   atualizar: (req, res) => {
