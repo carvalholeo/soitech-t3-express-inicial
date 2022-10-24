@@ -1,6 +1,9 @@
+const {listarClientes} = require('../models/clientesModel');
+
 const clienteController = {
   listarTodos: (req, res) => {
-    res.json('Listando todos os clientes');
+    const todosOsClientes = listarClientes();
+    res.json(todosOsClientes);
   },
   cliente: (req, res) => {
     res.json('Um cliente específico')

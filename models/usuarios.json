@@ -9,6 +9,59 @@
       "telefone": "+55 13 92345678",
       "usuario": "carvalho_leo",
       "dataNascimento": "1995-06-30"
+    },
+    {
+      "id": 2,
+      "nome": "Leo Carvalho",
+      "email": "leo@leocarvalho.dev",
+      "senha": "joaninhaDOFILMEINSETOS@123",
+      "cpf": "92926698003",
+      "telefone": "+55 13 92345678",
+      "usuario": "carvalho_leo",
+      "dataNascimento": "1995-06-30"
+    },
+    {
+      "id": 3,
+      "nome": "Leo Carvalho",
+      "email": "leo@leocarvalho.dev",
+      "senha": "joaninhaDOFILMEINSETOS@123",
+      "cpf": "92926698003",
+      "telefone": "+55 13 92345678",
+      "usuario": "carvalho_leo",
+      "dataNascimento": "1995-06-30"
+    },
+    {
+      "id": 4,
+      "nome": "Leo Carvalho",
+      "email": "leo@leocarvalho.dev",
+      "senha": "joaninhaDOFILMEINSETOS@123",
+      "cpf": "92926698003",
+      "telefone": "+55 13 92345678",
+      "usuario": "carvalho_leo",
+      "dataNascimento": "1995-06-30"
+    },
+    {
+      "email": "contato@soitech.com.br"
+    },
+    {
+      "id": 6,
+      "nome": "Léo",
+      "email": "contato@soitech.com.br",
+      "senha": "joaninhaDOFILMEINSETOS@123",
+      "cpf": "92926698003",
+      "telefone": "+55 13 92345678",
+      "usuario": "carvalho_leo",
+      "dataNascimento": "1995-06-30"
+    },
+    {
+      "id": 7,
+      "nome": "Leo Carvalho",
+      "email": "leo@leocarvalho.dev",
+      "senha": "joaninhaDOFILMEINSETOS@123",
+      "cpf": "92926698003",
+      "telefone": "+55 13 92345678",
+      "usuario": "carvalho_leo",
+      "dataNascimento": "1995-06-30"
     }
   ]
 }

@@ -1,4 +1,4 @@
-const {cadastroUsuario, buscarUmUsuario, listaDeUsuarios, excluirUsuario} = require('../models/usuariosModel');
+const {cadastroUsuario, buscarUmUsuario, listaDeUsuarios, excluirUsuario, atualizarUsuario} = require('../models/usuariosModel');
 
 const usersController = {
   base: (req, res) => {
@@ -20,7 +20,10 @@ const usersController = {
     res.json(novoUsuario);
   },
   atualizar: (req, res) => {
-    return res.send('OK atualizou usuários');
+    const objetoDoUsuario = req.body;
+    const { idDoUsuario } = req.params;
+    atualizarUsuario(idDoUsuario, objetoDoUsuario);
+    return res.json(`Usuário com id ${idDoUsuario} atualizado com sucesso`);
   },
   delete: (req, res) => {
     const {idDoUsuario} = req.params;

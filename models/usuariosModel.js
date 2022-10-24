@@ -86,10 +86,48 @@ function excluirUsuario(id) {
   }
 }
 
+function atualizarUsuario(id, objeto) {
+  try {
+    const usuariosArquivo = fs.readFileSync(__dirname + '/usuarios.json', { encoding: 'utf-8' });
+    const usuariosJson = JSON.parse(usuariosArquivo);
+    const usuarios = usuariosJson.usuarios;
+    // let usuario = {};
+
+    // for (let index = 0; index < usuarios.length; index++) {
+    //   let usuario = usuarios[index];
+    //   if (usuario.id === Number(id)) {
+    //     usuario = {
+    //       ...usuario,
+    //       ...objeto,
+    //     }
+    //     usuarios[index] = usuario;
+    //     break;
+    //   }
+    // }
+
+    usuarios.forEach((usuario, index) => {
+      if (usuario.id === Number(id)) {
+        usuario = {
+          ...usuario,
+          ...objeto
+        };
+        usuarios[index] = usuario;
+        return;
+      }
+    });
+
+    usuariosJson.usuarios = usuarios;
+    fs.writeFileSync(__dirname + '/usuarios.json', JSON.stringify(usuariosJson));
+   } catch (error) {
+    console.trace(error);
+  }
+}
+
 
 module.exports = {
   cadastroUsuario,
   buscarUmUsuario,
   listaDeUsuarios,
-  excluirUsuario
+  excluirUsuario,
+  atualizarUsuario
 };
