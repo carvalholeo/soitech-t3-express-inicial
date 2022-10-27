@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const {cadastroUsuario, buscarUmUsuario, listaDeUsuarios, excluirUsuario, atualizarUsuario} = require('../models/usuariosModel');
 
 const usersController = {
@@ -16,12 +18,25 @@ const usersController = {
     res.send('Envie no método POST os dados do cadastro')
   },
   cadastrar: (req, res) => {
-    const novoUsuario = cadastroUsuario(req.body);
-    res.json(novoUsuario);
+    const novoUsuario = req.body;
+    novoUsuario.senha = bcrypt.hashSync(req.body.senha, 12);
+    novoUsuario.nivel = 1;
+
+    const usuarioCadastrado = cadastroUsuario(novoUsuario);
+    res.json(usuarioCadastrado);
   },
   atualizar: (req, res) => {
     const objetoDoUsuario = req.body;
     const { idDoUsuario } = req.params;
+
+    if (objetoDoUsuario.senha) {
+      objetoDoUsuario.senha = bcrypt.hashSync(req.body.senha, 12);
+    }
+
+    if (objetoDoUsuario.nivel) {
+      objetoDoUsuario.nivel = undefined;
+    }
+
     atualizarUsuario(idDoUsuario, objetoDoUsuario);
     return res.json(`Usuário com id ${idDoUsuario} atualizado com sucesso`);
   },

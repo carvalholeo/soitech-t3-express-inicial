@@ -1,5 +1,10 @@
 const fs = require('fs');
 
+/**
+ * Método de cadastro de usuários no sistema
+ * @param {JSON} objetoDeCadastro Objeto contendo nome, email, CPF, telefone, usuário, data de nascimento e senha
+ * @return {JSON} Objeto enviado anteriormente, mas com id do banco de dados
+ */
 function cadastroUsuario(objetoDeCadastro) {
   try {
     const { nome, email, senha, cpf, telefone, usuario, dataNascimento } = objetoDeCadastro;
@@ -123,11 +128,26 @@ function atualizarUsuario(id, objeto) {
   }
 }
 
+function buscarUsuarioParaLogin(usuario) {
+  try {
+    const usuariosArquivo = fs.readFileSync(__dirname + '/usuarios.json', { encoding: 'utf-8' });
+    const usuariosJson = JSON.parse(usuariosArquivo);
+    const usuarios = usuariosJson.usuarios;
+
+    const usuarioUnico = usuarios.find(obj => obj.usuario === usuario);
+
+    return usuarioUnico;
+  } catch (error) {
+    console.trace(error);
+  }
+}
+
 
 module.exports = {
   cadastroUsuario,
   buscarUmUsuario,
   listaDeUsuarios,
   excluirUsuario,
-  atualizarUsuario
+  atualizarUsuario,
+  buscarUsuarioParaLogin
 };

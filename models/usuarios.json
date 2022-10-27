@@ -8,7 +8,8 @@
       "cpf": "92926698003",
       "telefone": "+55 13 92345678",
       "usuario": "carvalho_leo",
-      "dataNascimento": "1995-06-30"
+      "dataNascimento": "1995-06-30",
+      "nivel": 1
     },
     {
       "id": 2,
@@ -18,7 +19,8 @@
       "cpf": "92926698003",
       "telefone": "+55 13 92345678",
       "usuario": "carvalho_leo",
-      "dataNascimento": "1995-06-30"
+      "dataNascimento": "1995-06-30",
+      "nivel": 1
     },
     {
       "id": 3,
@@ -28,7 +30,8 @@
       "cpf": "92926698003",
       "telefone": "+55 13 92345678",
       "usuario": "carvalho_leo",
-      "dataNascimento": "1995-06-30"
+      "dataNascimento": "1995-06-30",
+      "nivel": 1
     },
     {
       "id": 4,
@@ -38,20 +41,19 @@
       "cpf": "92926698003",
       "telefone": "+55 13 92345678",
       "usuario": "carvalho_leo",
-      "dataNascimento": "1995-06-30"
-    },
-    {
-      "email": "contato@soitech.com.br"
+      "dataNascimento": "1995-06-30",
+      "nivel": 1
     },
     {
       "id": 6,
       "nome": "Léo",
       "email": "contato@soitech.com.br",
-      "senha": "joaninhaDOFILMEINSETOS@123",
+      "senha": "$2b$12$mcvKjxtzctYBKaG/ernvMejn7ihvdwnBk9aNwTHuBnCaWRRrc1Gpm",
       "cpf": "92926698003",
       "telefone": "+55 13 92345678",
-      "usuario": "carvalho_leo",
-      "dataNascimento": "1995-06-30"
+      "usuario": "sabio_do_ri",
+      "dataNascimento": "1995-06-30",
+      "nivel": 1
     },
     {
       "id": 7,
@@ -61,7 +63,74 @@
       "cpf": "92926698003",
       "telefone": "+55 13 92345678",
       "usuario": "carvalho_leo",
-      "dataNascimento": "1995-06-30"
+      "dataNascimento": "1995-06-30",
+      "nivel": 1
+    },
+    {
+      "id": 7,
+      "nome": "Godofredo Linhares",
+      "email": "godo@fredo.com",
+      "senha": "$2b$12$gJFVswvCuc1XKWbQMqDj5.vQlOtLn2MVjy992MFz3Whk7UeSh0Aue",
+      "cpf": "93798314047",
+      "telefone": "+55 21 99999999",
+      "usuario": "godo",
+      "dataNascimento": "1970/06/30",
+      "nivel": 1
+    },
+    {
+      "id": 8,
+      "nome": "Godofredo Linhares",
+      "email": "godo@fredo.com",
+      "senha": "$2b$12$Sh6MZyv0AD5Bgb963HVkLOVHzOOsr5LowkaQSYWl1LGhRt6UnN3eG",
+      "cpf": "93798314047",
+      "telefone": "+55 21 99999999",
+      "usuario": "carvalho_leo",
+      "dataNascimento": "1970/06/30",
+      "nivel": 1
+    },
+    {
+      "id": 9,
+      "nome": "Godofredo Linhares",
+      "email": "godo@fredo.com",
+      "senha": "$2b$12$Pwf8uA9li.nqYYuHNHmgTee8s4jjiLpQzyKGejdjSuo2TiUJAWu4C",
+      "cpf": "93798314047",
+      "telefone": "+55 21 99999999",
+      "usuario": "carvalho_leo",
+      "dataNascimento": "1970/06/30",
+      "nivel": 1
+    },
+    {
+      "id": 10,
+      "nome": "Godofredo Linhares",
+      "email": "godo@fredo.com",
+      "senha": "$2b$12$D1R7piNB/kfSQB5pPfMMKefn0tlLNGZ5QAxcYhimwtcIOqarQzH4e",
+      "cpf": "93798314047",
+      "telefone": "+55 21 99999999",
+      "usuario": "carvalho_leo",
+      "dataNascimento": "1970/06/30",
+      "nivel": 1
+    },
+    {
+      "id": 11,
+      "nome": "Josivaldo",
+      "email": "josivaldo@santos.com",
+      "senha": "$2b$12$Hh7tXf4ZGV8FfOOzIeucD.95Nz.yxyeilWUt7upViZ5TATeJrNwiu",
+      "cpf": "13743033054",
+      "telefone": "+55 91 999998888",
+      "usuario": "sabio_do_rio",
+      "dataNascimento": "1990/12/25",
+      "nivel": 2
+    },
+    {
+      "id": 12,
+      "nome": "Josivaldo",
+      "email": "josivaldo@santos.com",
+      "senha": "$2b$12$J2b67xhEJzpDwa4gXrJOzeapCO7Wd9cIVF00o5KKa050qdTsseCkW",
+      "cpf": "13743033054",
+      "telefone": "+55 91 999998888",
+      "usuario": "sabio_do_rio",
+      "dataNascimento": "1990/12/25",
+      "nivel": 1
     }
   ]
 }
