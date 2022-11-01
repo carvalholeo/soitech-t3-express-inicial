@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 
 const userRoutes = require('./users');
 const ordensDeServicosRoutes = require('./ordensDeServicos');
@@ -35,7 +36,11 @@ route.post('/login', function (req, res) {
   req.app.locals.estaLogado = true;
   req.app.locals.usuario = usuarioDB;
 
-  return res.json('OK')
+  const token = jwt.sign(usuarioDB, process.env.CHAVE_JWT, {
+    expiresIn: '5 minutes'
+  });
+
+  return res.json({token})
 })
 
 
