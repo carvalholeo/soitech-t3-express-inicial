@@ -18,9 +18,3 @@ route.patch('/:idDoUsuario', usersController.atualizar); // atualizar um usuario
 route.delete('/:idDoUsuario', usersController.delete); // apagar um usuário
 
 module.exports = route;
-
-// criar função que lê o arquivo e devolve o array de objetos - OK
-// exportar a função no final da model - ok
-// importar no controller - ok
-// executar a função dentro do controller 'base' - ok
-// enviar a lista para o cliente (Insomnia) - ok
