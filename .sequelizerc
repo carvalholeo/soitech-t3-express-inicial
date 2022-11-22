@@ -1,0 +1,10 @@
+
+
+const configObject = {
+  config: __dirname + '/config/config.js',
+  'models-path': __dirname + '/database/models',
+  'migrations-path': __dirname + '/database/migrations',
+  'seeders-path': __dirname + '/database/seeders'
+};
+
+module.exports = configObject;
