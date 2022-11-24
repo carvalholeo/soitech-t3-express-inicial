@@ -18,7 +18,7 @@ module.exports = {
         defaultValue: false,
         allowNull: false,
       },
-      lterar_tecnico: {
+      alterar_tecnico: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false,
@@ -43,7 +43,7 @@ module.exports = {
         defaultValue: false,
         allowNull: false,
       },
-      acessar_: {
+      acessar_ordem: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false,

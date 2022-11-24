@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Permissao.hasMany(models.Usuario, {
+        foreignKey: 'nivel_id',
+        as: 'permissao_usuario'
+      });
     }
   }
   Permissao.init({
@@ -23,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: false
     },
-    lterar_tecnico: {
+    alterar_tecnico: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false
@@ -48,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: false
     },
-    acessar_: {
+    acessar_ordem: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false

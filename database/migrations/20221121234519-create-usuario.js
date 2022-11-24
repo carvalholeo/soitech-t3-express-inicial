@@ -47,7 +47,18 @@ module.exports = {
       nivel_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: 1
+        defaultValue: 1,
+        references: {
+          model: 'Permissoes',
+          key: 'id',
+          onUpdate: 'CASCADE',
+          onDelete: 'RESTRICT'
+          // 1 - Apaga usuário se permissão for apagada - CASCADE
+          // 2 - Não permite apagar permissão se tiver usuário cadastrado com ela - RESTRICT
+          // 3 - Apaga permissão sem mexer no usuário - NO ACTION *
+          // 4 - Apaga a permissão e coloca valor padrão no lugar - SET DEFAULT
+          // 5 - Apaga a permissão e colocar o valor NULL - SET NULL
+        }
       },
       createdAt: {
         allowNull: false,
