@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
       id_tecnico: {
-        type: Sequelize.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Usuarios',
@@ -30,7 +30,7 @@ module.exports = {
         }
       },
       id_cadastrante: {
-        type: Sequelize.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Usuarios',
@@ -39,7 +39,7 @@ module.exports = {
         }
       },
       id_cliente: {
-        type: Sequelize.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Clientes',
@@ -48,7 +48,7 @@ module.exports = {
         }
       },
       status_da_ordem: {
-        type: Sequelize.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 1,
         references: {

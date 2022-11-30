@@ -15,6 +15,16 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'nivel_id',
         as: 'usuario_permissao'
       });
+
+      Usuario.hasMany(models.OrdensDeServico, {
+        foreignKey: 'id_cadastrante',
+        as: 'cadastrante_ordensdeservico'
+      });
+
+      Usuario.hasMany(models.OrdensDeServico, {
+        foreignKey: 'id_tecnico',
+        as: 'tecnico_ordensdeservico'
+      });
     }
   }
   Usuario.init({

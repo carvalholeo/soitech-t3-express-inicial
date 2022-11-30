@@ -20,6 +20,23 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_cliente',
         as: 'ordensdeservico_clientes'
       });
+
+      OrdensDeServico.belongsTo(models.Usuario, {
+        foreignKey: 'id_cadastrante',
+        as: 'ordensdeservico_cadastrante'
+      });
+
+      OrdensDeServico.belongsTo(models.Usuario, {
+        foreignKey: 'id_tecnico',
+        as: 'ordensdeservico_tecnico'
+      });
+
+      OrdensDeServico.belongsToMany(models.Servico, {
+        through: models.ChamadoEOrdem,
+        foreignKey: 'id_ordem',
+        // targetKey: 'id_ordem',
+        as: 'ordens_servicos'
+      });
     }
   }
   OrdensDeServico.init({
@@ -31,19 +48,19 @@ module.exports = (sequelize, DataTypes) => {
     solicitacao: DataTypes.STRING(100),
     data_encerramento: DataTypes.DATE,
     id_tecnico: {
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     id_cadastrante: {
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     id_cliente: {
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     status_da_ordem: {
-      type: DataTypes.INTEGER.UNSIGNED,
+      type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1
     }
