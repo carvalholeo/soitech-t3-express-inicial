@@ -2,7 +2,7 @@
 
 const configObject = {
   config: __dirname + '/config/config.js',
-  'models-path': __dirname + '/database/models',
+  'models-path': __dirname + '/database/repository',
   'migrations-path': __dirname + '/database/migrations',
   'seeders-path': __dirname + '/database/seeders'
 };
