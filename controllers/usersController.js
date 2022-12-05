@@ -3,29 +3,29 @@ const bcrypt = require('bcrypt');
 const {cadastroUsuario, buscarUmUsuario, listaDeUsuarios, excluirUsuario, atualizarUsuario} = require('../models/usuariosModel');
 
 const usersController = {
-  base: (req, res) => {
-    const usuarios = listaDeUsuarios();
+  base: async (req, res) => {
+    const usuarios = await listaDeUsuarios();
 
     res.json(usuarios)
   },
-  buscarUmUsuario: (req, res) => {
+  buscarUmUsuario: async (req, res) => {
     const {idDoUsuario} = req.params;
-    const usuario = buscarUmUsuario(idDoUsuario);
+    const usuario = await buscarUmUsuario(idDoUsuario);
 
     res.json(usuario)
   },
   formularioCadastro: (req, res) => {
     res.send('Envie no método POST os dados do cadastro')
   },
-  cadastrar: (req, res) => {
+  cadastrar: async (req, res) => {
     const novoUsuario = req.body;
     novoUsuario.senha = bcrypt.hashSync(req.body.senha, 12);
     novoUsuario.nivel = 1;
 
-    const usuarioCadastrado = cadastroUsuario(novoUsuario);
+    const usuarioCadastrado = await cadastroUsuario(novoUsuario);
     res.json(usuarioCadastrado);
   },
-  atualizar: (req, res) => {
+  atualizar: async(req, res) => {
     const objetoDoUsuario = req.body;
     const { idDoUsuario } = req.params;
 
@@ -33,16 +33,20 @@ const usersController = {
       objetoDoUsuario.senha = bcrypt.hashSync(req.body.senha, 12);
     }
 
-    if (objetoDoUsuario.nivel) {
-      objetoDoUsuario.nivel = undefined;
+    if (objetoDoUsuario.nivel_id) {
+      objetoDoUsuario.nivel_id = undefined;
     }
 
-    atualizarUsuario(idDoUsuario, objetoDoUsuario);
+    if (objetoDoUsuario.estaAtivo) {
+      objetoDoUsuario = undefined;
+    }
+
+    await atualizarUsuario(idDoUsuario, objetoDoUsuario);
     return res.json(`Usuário com id ${idDoUsuario} atualizado com sucesso`);
   },
-  delete: (req, res) => {
+  delete: async (req, res) => {
     const {idDoUsuario} = req.params;
-    excluirUsuario(idDoUsuario);
+    await excluirUsuario(idDoUsuario);
     return res.json('usuário com id '+ idDoUsuario +' excluído com sucesso')
   }
 };

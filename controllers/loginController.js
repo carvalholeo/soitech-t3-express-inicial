@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 const {buscarUsuarioParaLogin} = require('../models/usuariosModel');
 
 const loginController = {
-  fazerLogin: (req, res) => {
+  fazerLogin: async (req, res) => {
     const {usuario, senha} = req.body;
-    const usuarioDB = buscarUsuarioParaLogin(usuario);
+    const usuarioDB = await buscarUsuarioParaLogin(usuario);
 
     if (typeof(usuarioDB) === "undefined") {
       return res.status(401).json('Usuário ou senha inválidos');
@@ -19,8 +19,9 @@ const loginController = {
     }
 
     usuarioDB.senha = undefined;
+    const usuarioParse = JSON.parse(JSON.stringify(usuarioDB));
 
-    const token = jwt.sign(usuarioDB, process.env.CHAVE_JWT, {
+    const token = jwt.sign(usuarioParse, process.env.CHAVE_JWT, {
       expiresIn: '5 minutes'
     });
 

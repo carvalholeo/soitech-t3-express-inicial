@@ -1,8 +1,16 @@
-function autorizacaoMiddleware(req, res, next) {
+const { Permissao } = require('../database/repository');
+
+async function autorizacaoMiddleware(req, res, next) {
   const { idDoUsuario } = req.params;
   const { id, nivel = 1 } = req.conteudo;
 
-  if (Number(idDoUsuario) === id || nivel === 2) {
+  const permissoes = await Permissao.findOne({
+    where: {
+      id: nivel
+    }
+  });
+
+  if (Number(idDoUsuario) === id || permissoes.alterar_ordem) {
     return next();
   }
 

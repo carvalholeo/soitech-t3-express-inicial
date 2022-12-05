@@ -9,11 +9,12 @@ const autorizacaoMiddleware = require('../middlewares/autorizacaoMiddleware');
 
 const route = Router();
 
+route.post('/', validacaoCadastro, validatorMiddleware, usersController.cadastrar); // implementado
+
 route.use(autenticacaoMiddleware);
 
 route.get('/', usersController.base); // listar todos os usuarios
 route.get('/:idDoUsuario', autorizacaoMiddleware, usersController.buscarUmUsuario); // implementado
-route.post('/', validacaoCadastro, validatorMiddleware, usersController.cadastrar); // implementado
 route.patch('/:idDoUsuario', usersController.atualizar); // atualizar um usuario
 route.delete('/:idDoUsuario', usersController.delete); // apagar um usuário
 

@@ -1,4 +1,5 @@
 const { check } = require('express-validator');
+const {Usuario} = require('../database/repository');
 
 // nome, cpf, data de nascimento, e-mail, telefone, senha, usuário
 const arrayDeValidacao = [
@@ -21,7 +22,21 @@ const arrayDeValidacao = [
     .isDate().withMessage('Data de nascimento precisa estar no formato AAAA/MM/DD.')
     .notEmpty(),
   check('telefone').isMobilePhone('pt-BR'),
-  check('usuario').notEmpty().isLength({min: 5, max: 20})
+  check('usuario')
+    .notEmpty()
+    .isLength({min: 5, max: 20})
+    .custom(async (field) => {
+      const usuario = await Usuario.findOne({
+        where: {
+          usuario: field
+        }
+      });
+
+      if (usuario) {
+        throw "Usuário já existe no banco de dados";
+      }
+      return true;
+    })
 ];
 
 module.exports = arrayDeValidacao;
