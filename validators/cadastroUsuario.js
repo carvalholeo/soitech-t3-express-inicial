@@ -44,6 +44,7 @@ const arrayDeValidacao = [
     //   }
     //   return true;
     // }),
+    ,
   check('nome').notEmpty().isLength({max: 50, min: 4}),
   check('cpf')
     .notEmpty()
