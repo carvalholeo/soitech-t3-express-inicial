@@ -8,7 +8,7 @@ const loginController = {
     const {usuario, senha} = req.body;
     const usuarioDB = await buscarUsuarioParaLogin(usuario);
 
-    if (typeof(usuarioDB) === "undefined") {
+    if (!usuarioDB) {
       return res.status(401).json('Usuário ou senha inválidos');
     }
 

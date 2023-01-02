@@ -1,3 +1,5 @@
+const { Op } = require("sequelize");
+
 const { Usuario } = require('../database/repository');
 
 
@@ -35,7 +37,9 @@ async function buscarUmUsuario(id) {
   try {
     const usuario = await Usuario.findOne({
       where: {id: id},
-      include: 'usuario_permissao'
+      include: {
+        association: 'usuario_permissao',
+      }
     });
 
     return usuario;
