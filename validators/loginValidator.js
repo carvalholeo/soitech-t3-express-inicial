@@ -1,9 +1,5 @@
 const { check } = require('express-validator');
 
-
-const texto1 = 'de vison          gfjgh         hgj';
-const texto2 = '            ';
-
 const loginValidator = [
   check('usuario')
     .trim()
