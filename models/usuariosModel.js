@@ -1,7 +1,6 @@
 const { Op } = require("sequelize");
 
-const { Usuario } = require('../database/repository');
-
+const { Usuario } = require("../database/repository");
 
 /**
  * Método de cadastro de usuários no sistema
@@ -10,9 +9,10 @@ const { Usuario } = require('../database/repository');
  */
 async function cadastroUsuario(objetoDeCadastro) {
   try {
-    const { nome, email, senha, cpf, telefone, usuario, dataNascimento } = objetoDeCadastro;
+    const { nome, email, senha, cpf, telefone, usuario, dataNascimento } =
+      objetoDeCadastro;
 
-   const novoUsuario =  await Usuario.create({
+    const novoUsuario = await Usuario.create({
       nome: nome,
       email: email,
       senha: senha,
@@ -21,25 +21,28 @@ async function cadastroUsuario(objetoDeCadastro) {
       usuario: usuario,
       dataNascimento: dataNascimento,
       nivel_id: 1,
-      estaAtivo: true
+      estaAtivo: true,
     });
 
     novoUsuario.senha = undefined;
 
     return novoUsuario;
   } catch (error) {
-    console.trace(error)
-    return error;
+    console.trace(error);
+    if (error?.original?.code === 'ER_NO_REFERENCED_ROW_2') {
+      throw new RangeError('Nível de usuário não existe');
+    }
+    throw new Error('Erro ao cadastrar usuário');
   }
 }
 
 async function buscarUmUsuario(id) {
   try {
     const usuario = await Usuario.findOne({
-      where: {id: id},
+      where: { id: id },
       include: {
-        association: 'usuario_permissao',
-      }
+        association: "usuario_permissao",
+      },
     });
 
     return usuario;
@@ -53,7 +56,7 @@ async function listaDeUsuarios() {
   try {
     const usuarios = await Usuario.findAll();
 
-    return usuarios
+    return usuarios;
   } catch (error) {
     console.trace(error);
     return error;
@@ -62,7 +65,7 @@ async function listaDeUsuarios() {
 
 async function excluirUsuario(id) {
   try {
-    await Usuario.destroy({where: { id: id }});
+    await Usuario.destroy({ where: { id: id } });
   } catch (error) {
     console.trace(error);
     return error;
@@ -71,8 +74,8 @@ async function excluirUsuario(id) {
 
 async function atualizarUsuario(id, objeto) {
   try {
-    await Usuario.update(objeto, { where: { id }});
-   } catch (error) {
+    await Usuario.update(objeto, { where: { id } });
+  } catch (error) {
     console.trace(error);
   }
 }
@@ -81,8 +84,8 @@ async function buscarUsuarioParaLogin(usuario) {
   try {
     const usuarioUnico = await Usuario.findOne({
       where: {
-        usuario: usuario
-      }
+        usuario: usuario,
+      },
     });
 
     return usuarioUnico;
@@ -91,12 +94,11 @@ async function buscarUsuarioParaLogin(usuario) {
   }
 }
 
-
 module.exports = {
   cadastroUsuario,
   buscarUmUsuario,
   listaDeUsuarios,
   excluirUsuario,
   atualizarUsuario,
-  buscarUsuarioParaLogin
+  buscarUsuarioParaLogin,
 };

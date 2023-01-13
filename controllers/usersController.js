@@ -18,12 +18,20 @@ const usersController = {
     res.send('Envie no método POST os dados do cadastro')
   },
   cadastrar: async (req, res) => {
-    const novoUsuario = req.body;
-    novoUsuario.senha = bcrypt.hashSync(req.body.senha, 12);
-    novoUsuario.nivel = 1;
+    try {
+      const novoUsuario = req.body;
+      novoUsuario.senha = bcrypt.hashSync(req.body.senha, 12);
+      novoUsuario.nivel = 1;
 
-    const usuarioCadastrado = await cadastroUsuario(novoUsuario);
-    res.json(usuarioCadastrado);
+      const usuarioCadastrado = await cadastroUsuario(novoUsuario);
+
+      res.json(usuarioCadastrado);
+    } catch (error) {
+      res
+        .status(500)
+        .json(error.message);
+    }
+
   },
   atualizar: async(req, res) => {
     const objetoDoUsuario = req.body;
@@ -48,6 +56,15 @@ const usersController = {
     const {idDoUsuario} = req.params;
     await excluirUsuario(idDoUsuario);
     return res.json('usuário com id '+ idDoUsuario +' excluído com sucesso')
+  },
+  logout: (req, res) => {
+    const {authorization = ''} = req.headers;
+    const partes = authorization.split(' ');
+    const [, token] = partes;
+
+    req.mapa.set(token, true);
+
+    return res.json('Usuário deslogado com sucesso').status(204);
   }
 };
 

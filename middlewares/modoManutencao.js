@@ -1,7 +1,7 @@
-const modoManutencao = false;
+const { ESTA_EM_MANUTENCAO = 0 } = process.env;
 
 function modoManutencaoMiddleware(req, res, next) {
-  if (modoManutencao) {
+  if (+ESTA_EM_MANUTENCAO) {
     return res
       .status(503)
       .json('Oops, sistema em manutenção. Vá ler um livro.');
