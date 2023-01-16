@@ -1,22 +1,37 @@
-const {listarClientes} = require('../models/clientesModel');
+const {
+  listarClientes,
+  cadastrarCliente,
+  buscarUmCliente,
+  excluirCliente,
+  atualizarCliente,
+} = require("../models/clientesModel");
 
 const clienteController = {
-  listarTodos: (req, res) => {
-    const todosOsClientes = listarClientes();
+  listarTodos: async (req, res) => {
+    const todosOsClientes = await listarClientes();
     res.json(todosOsClientes);
   },
-  cliente: (req, res) => {
-    res.json('Um cliente específico')
+  cliente: async (req, res) => {
+    const { id } = req.params;
+    const cliente = await buscarUmCliente(id);
+    res.json(cliente);
   },
-  criarCliente: (req, res) => {
-    res.json('cliente criado');
+  criarCliente: async (req, res) => {
+    const novoCliente = req.body;
+    await cadastrarCliente(novoCliente);
+    res.json("cliente criado");
   },
-  atualizarCliente: (req, res) => {
-    res.json('cliente atualizado');
+  atualizarCliente: async (req, res) => {
+    const { id } = req.params;
+    const objeto = req.body;
+    await atualizarCliente(id, objeto);
+    res.json("cliente atualizado");
   },
-  apagarCliente: (req, res) => {
-    res.json('cliente excluído');
-  }
-}
+  apagarCliente: async (req, res) => {
+    const { id } = req.params;
+    await excluirCliente(id);
+    res.json("cliente excluído");
+  },
+};
 
 module.exports = clienteController;

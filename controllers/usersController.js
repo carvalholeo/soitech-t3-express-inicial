@@ -14,9 +14,6 @@ const usersController = {
 
     res.json(usuario)
   },
-  formularioCadastro: (req, res) => {
-    res.send('Envie no método POST os dados do cadastro')
-  },
   cadastrar: async (req, res) => {
     try {
       const novoUsuario = req.body;

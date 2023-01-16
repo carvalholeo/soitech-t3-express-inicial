@@ -5,9 +5,9 @@ const ordensDeServicosController = require('../controllers/ordensDeServicosContr
 const route = Router();
 
 route.get('/', ordensDeServicosController.base);
-route.get('/:idDaOrdemDeServico', ordensDeServicosController.base);
+route.get('/:id', ordensDeServicosController.base);
 route.post('/', ordensDeServicosController.cadastrar);
-route.patch('/', ordensDeServicosController.atualizar);
-route.delete("/", ordensDeServicosController.delete);
+route.patch('/:id', ordensDeServicosController.atualizar);
+route.delete("/:id", ordensDeServicosController.delete);
 
 module.exports = route;

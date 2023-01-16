@@ -1,37 +1,37 @@
 const {
-  listarOrdens,
-  cadastrarOrdem,
-  buscarUmaOrdem,
-  excluirOrdem,
-  atualizarOrdem,
-} = require('../models/ordensDeServicosModel');
+  listarServicos,
+  cadastrarServico,
+  buscarUmServico,
+  excluirServico,
+  atualizarServico,
+} = require('../models/servicosModel');
 
-const ordensDeServicosController = {
+const servicosController = {
   base: async (req, res) => {
-    const ordens = await listarOrdens();
+    const ordens = await listarServicos();
     return res.json({ordens});
   },
   cadastrar: async (req, res) => {
     const ordem = req.body;
-    await cadastrarOrdem(ordem);
+    await cadastrarServico(ordem);
     return res.json({mensagem: 'ordem de serviço cadastrada'})
   },
   atualizar: async (req, res) => {
     const { id } = req.params;
     const objeto = req.body;
-    await atualizarOrdem(id, objeto);
+    await atualizarServico(id, objeto);
     return res.json({mensagem: 'ordem de serviço atualizada'});
   },
   delete: async (req, res) => {
     const { id } = req.params;
-    await excluirOrdem(id);
+    await excluirServico(id);
     return res.json({mensagem: "Ordem de serviço excluída"});
   },
   buscar: async (req, res) => {
     const { id } = req.params;
-    const ordem = await buscarUmaOrdem(id);
+    const ordem = await buscarUmServico(id);
     return res.json({ordem});
   }
 }
 
-module.exports = ordensDeServicosController;
+module.exports = servicosController;
