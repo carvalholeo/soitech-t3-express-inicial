@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
     data_encerramento: DataTypes.DATE,
     id_tecnico: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     id_cadastrante: {
       type: DataTypes.INTEGER,

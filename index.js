@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   const {authorization = ''} = req.headers;
-  const partes = authorization.split(token);
+  const partes = authorization.split(' ');
   const [, token] = partes;
 
   if (mapa.has(token)) {

@@ -1,26 +1,51 @@
-const { OrdensDeServico } = require("../database/repository");
+const crypto = require("crypto");
+const Sequelize = require("sequelize");
+
+const { OrdensDeServico, ChamadoEOrdem, Usuario } = require("../database/repository");
 
 async function cadastrarOrdem(objetoDeCadastro) {
   try {
     const {
       data_abertura,
       solicitacao,
-      data_encerramento,
-      id_tecnico,
       id_cliente,
       id_cadastrante,
-      status_da_ordem,
+      servicos
     } = objetoDeCadastro;
+
+    const tecnicos = await Usuario.findAll({
+      where: {
+        estaAtivo: true,
+      },
+      include: [
+        {
+          association: 'usuario_permissao',
+          where: {
+            nome_permissao: 'Técnico'
+          }
+        },
+      ],
+      attributes: ['id'],
+      raw: true
+    });
+    const indice = crypto.randomInt(0, tecnicos.length - 1);
+    const tecnicoSorteado = tecnicos[indice];
 
     const novaOrdem = await OrdensDeServico.create({
       data_abertura,
       solicitacao,
-      data_encerramento,
-      id_tecnico,
+      id_tecnico: tecnicoSorteado.id,
       id_cliente,
       id_cadastrante,
-      status_da_ordem,
+      status_da_ordem: 1,
     });
+
+    for await (const item of servicos) {
+      await ChamadoEOrdem.create({
+        id_ordem: novaOrdem.id,
+        id_servico: item
+      });
+    }
 
     return novaOrdem;
   } catch (error) {

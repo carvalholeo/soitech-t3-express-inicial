@@ -5,7 +5,7 @@ const ordensDeServicosController = require('../controllers/ordensDeServicosContr
 const route = Router();
 
 route.get('/', ordensDeServicosController.base);
-route.get('/:id', ordensDeServicosController.base);
+route.get('/:id', ordensDeServicosController.buscar);
 route.post('/', ordensDeServicosController.cadastrar);
 route.patch('/:id', ordensDeServicosController.atualizar);
 route.delete("/:id", ordensDeServicosController.delete);
