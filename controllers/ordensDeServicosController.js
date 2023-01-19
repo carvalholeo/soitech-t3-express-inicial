@@ -13,8 +13,8 @@ const ordensDeServicosController = {
   },
   cadastrar: async (req, res) => {
     const ordem = req.body;
-    await cadastrarOrdem(ordem);
-    return res.json({mensagem: 'ordem de serviço cadastrada'})
+    const ordemCadastrada = await cadastrarOrdem(ordem);
+    return res.json({mensagem: ordemCadastrada})
   },
   atualizar: async (req, res) => {
     const { id } = req.params;
