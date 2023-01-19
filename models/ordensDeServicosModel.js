@@ -13,28 +13,50 @@ async function cadastrarOrdem(objetoDeCadastro) {
       servicos
     } = objetoDeCadastro;
 
-    const tecnicos = await Usuario.findAll({
-      where: {
-        estaAtivo: true,
-      },
+    const tecnicos = await OrdensDeServico.findAll({
       include: [
         {
-          association: 'usuario_permissao',
+          association: 'ordensdeservicos_statusordens',
           where: {
-            nome_permissao: 'Técnico'
-          }
+            nome: {
+              [Sequelize.Op.notIn]: ['Cancelado', 'Encerrado', 'Congelado']
+            }
+          },
+          attributes: [],
         },
+        {
+          association: 'ordensdeservico_tecnico',
+          attributes: ['id', 'nome'],
+          where: {
+            estaAtivo: true,
+          },
+          include: [
+            {
+              association: 'usuario_permissao',
+              where: {
+                nome_permissao: 'Técnico'
+              },
+              attributes: []
+            }
+          ]
+        }
       ],
-      attributes: ['id'],
-      raw: true
+      attributes: [
+        [Sequelize.fn('COUNT', Sequelize.col('id_tecnico')), 'ordens_por_tecnico']
+      ],
+      group: ['id_tecnico'],
+      having: Sequelize.literal('ordens_por_tecnico <= 3'),
     });
-    const indice = crypto.randomInt(0, tecnicos.length - 1);
-    const tecnicoSorteado = tecnicos[indice];
+
+    const quantidadeMinima = tecnicos.length <= 1;
+    const indice = quantidadeMinima ? tecnicos[0]?.ordensdeservico_tecnico?.id : crypto.randomInt(0, tecnicos.length - 1)
+    const tecnicoSorteado = quantidadeMinima ? indice : tecnicos[indice]?.ordensdeservico_tecnico?.id;
+
 
     const novaOrdem = await OrdensDeServico.create({
       data_abertura,
       solicitacao,
-      id_tecnico: tecnicoSorteado.id,
+      id_tecnico: tecnicoSorteado,
       id_cliente,
       id_cadastrante,
       status_da_ordem: 1,
