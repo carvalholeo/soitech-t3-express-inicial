@@ -1,8 +1,11 @@
 const { Router } = require("express");
 
 const servicosController = require("../controllers/servicosController");
+const autenticacaoMiddleware = require('../middlewares/autenticacaoMiddleware');
 
 const route = Router();
+
+route.use(autenticacaoMiddleware);
 
 route.get("/", servicosController.base);
 route.get("/:id", servicosController.buscar);
