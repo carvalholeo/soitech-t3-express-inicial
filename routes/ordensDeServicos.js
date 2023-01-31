@@ -3,27 +3,41 @@ const { Router } = require('express');
 const ordensDeServicosController = require('../controllers/ordensDeServicosController');
 
 const novaOrdemValidator = require('../validators/novaOrdemValidador');
+const routeIdValidator = require('../validators/routeIdValidator');
 
 const validator = require('../middlewares/validatorMiddleware');
 const autenticacaoMiddleware = require('../middlewares/autenticacaoMiddleware');
 const autorizacaoMiddleware = require('../middlewares/autorizacaoMiddleware');
 
+const insereNivel = require('../middlewares/insereNivelMiddleware');
+
 const route = Router();
-
-function niveis(array_permissoes) {
-
-  return function(req, res, next) {
-    req.nivel = array_permissoes;
-    next();
-  }
-}
 
 route.use(autenticacaoMiddleware);
 
 route.get('/', ordensDeServicosController.base);
-route.get('/:id', niveis(['Administrador', 'Backoffice', 'Diretoria', 'Técnico', 'Cliente']), autorizacaoMiddleware, ordensDeServicosController.buscar);
-route.post('/', niveis(['Administrador', 'Backoffice', 'Diretoria']), autorizacaoMiddleware, novaOrdemValidator, validator, ordensDeServicosController.cadastrar);
-route.patch('/:id', ordensDeServicosController.atualizar);
-route.delete("/:id", ordensDeServicosController.delete);
+route.get('/:id',
+  insereNivel(['Administrador', 'Backoffice', 'Diretoria', 'Técnico', 'Cliente']),
+  autorizacaoMiddleware,
+  routeIdValidator,
+  validator,
+  ordensDeServicosController.buscar);
+
+route.post('/',
+  insereNivel(['Administrador', 'Backoffice', 'Diretoria']),
+  autorizacaoMiddleware,
+  novaOrdemValidator,
+  validator,
+  ordensDeServicosController.cadastrar);
+
+route.patch('/:id',
+  routeIdValidator,
+  validator,
+  ordensDeServicosController.atualizar);
+
+route.delete("/:id",
+  routeIdValidator,
+  validator,
+  ordensDeServicosController.delete);
 
 module.exports = route;

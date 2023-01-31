@@ -2,7 +2,7 @@ const { Router } = require('express');
 
 const clienteController = require('../controllers/clienteController');
 
-const idDaRotaValidator = require('../validators/idDeRotaValidator');
+const routeIdValidator = require('../validators/routeIdValidator');
 const validatorMiddleware = require('../middlewares/validatorMiddleware');
 const autenticacaoMiddleware = require('../middlewares/autenticacaoMiddleware');
 const autorizacaoMiddleware = require('../middlewares/autorizacaoMiddleware');
@@ -22,9 +22,9 @@ router
   .use(autenticacaoMiddleware)
   .use(autorizacaoMiddleware)
   .get('/', clienteController.listarTodos)
-  .get('/:id', idDaRotaValidator, validatorMiddleware, clienteController.cliente)
+  .get('/:id', routeIdValidator, validatorMiddleware, clienteController.cliente)
   .post('/', clienteController.criarCliente)
-  .patch('/:id', idDaRotaValidator, validatorMiddleware,clienteController.atualizarCliente)
-  .delete('/:id', idDaRotaValidator, validatorMiddleware, clienteController.apagarCliente);
+  .patch('/:id', routeIdValidator, validatorMiddleware,clienteController.atualizarCliente)
+  .delete('/:id', routeIdValidator, validatorMiddleware, clienteController.apagarCliente);
 
 module.exports = router;
