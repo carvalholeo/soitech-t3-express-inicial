@@ -4,6 +4,7 @@ const ordensDeServicosController = require('../controllers/ordensDeServicosContr
 
 const novaOrdemValidator = require('../validators/novaOrdemValidador');
 const routeIdValidator = require('../validators/routeIdValidator');
+const atualizaOrdemServicoValidator = require('../validators/autalizaOrdemServicoValidator');
 
 const validator = require('../middlewares/validatorMiddleware');
 const autenticacaoMiddleware = require('../middlewares/autenticacaoMiddleware');
@@ -31,7 +32,10 @@ route.post('/',
   ordensDeServicosController.cadastrar);
 
 route.patch('/:id',
+  insereNivel(['Administrador', 'Backoffice', 'Diretoria', 'Técnico']),
+  autorizacaoMiddleware,
   routeIdValidator,
+  atualizaOrdemServicoValidator,
   validator,
   ordensDeServicosController.atualizar);
 
