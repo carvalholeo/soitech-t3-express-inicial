@@ -1,10 +1,11 @@
-const { ESTA_EM_MANUTENCAO = 0 } = process.env;
+const { ESTA_EM_MANUTENCAO } = process.env;
 
 function modoManutencaoMiddleware(req, res, next) {
+
   if (+ESTA_EM_MANUTENCAO) {
     return res
       .status(503)
-      .json('Oops, sistema em manutenção. Vá ler um livro.');
+      .json("Oops, sistema em manutenção. Vá ler um livro.");
   }
   next();
 }
