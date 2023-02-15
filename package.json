@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test:unit": "jest --testMatch=\"**/*.test.js\"",
+    "test:integration": "jest --testMatch=\"**/*.spec.js\"",
     "prestart": "npm run migration",
-    "start": "nodemon index.js",
+    "start": "nodemon ./src/server.js",
     "migration": "npx sequelize-cli db:migrate",
     "postmigraton": "npx sequelize-cli db:seed:all"
   },
@@ -21,11 +23,13 @@
     "jsonwebtoken": "^9.0.0",
     "mariadb": "^3.0.2",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.25.5"
+    "sequelize": "^6.25.5",
+    "sqlite3": "^5.1.4"
   },
   "devDependencies": {
     "@fakerjs/faker": "^3.0.0",
     "jest": "^29.4.1",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "supertest": "^6.3.3"
   }
 }

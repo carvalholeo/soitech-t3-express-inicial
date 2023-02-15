@@ -37,4 +37,4 @@ app.use(contadorDeAcessos);
 
 app.use(routes);
 
-app.listen(process.env.PORTA || 8080, () => console.log('Express subiu o servidor'));
+module.exports = app;

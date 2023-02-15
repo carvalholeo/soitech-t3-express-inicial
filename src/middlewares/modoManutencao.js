@@ -1,6 +1,5 @@
-const { ESTA_EM_MANUTENCAO } = process.env;
-
 function modoManutencaoMiddleware(req, res, next) {
+  const { ESTA_EM_MANUTENCAO } = process.env;
 
   if (+ESTA_EM_MANUTENCAO) {
     return res
