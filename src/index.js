@@ -1,5 +1,7 @@
+const testEnvironment = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
+
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config({ path: testEnvironment });
 const express = require('express');
 
 const routes = require('./routes/index');
