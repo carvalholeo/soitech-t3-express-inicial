@@ -1,13 +1,13 @@
-const execSync = require('child_process').execSync;
+const doMigrate = require('../../global/doMigrate');
+const doSeed = require('../../global/doSeed');
+const undoMigrate = require('../../global/undoMigrate');
+
 const autorizacaoMiddleware = require("../../../src/middlewares/autorizacaoMiddleware");
 
-// function up() {
-  
-// }
 
 beforeAll(() => {
-  execSync('npx sequelize-cli db:migrate');
-  execSync('npx sequelize-cli db:seed:all');
+  doMigrate();
+  doSeed();
 });
 
 beforeEach(() => {
@@ -27,7 +27,7 @@ beforeEach(() => {
 });
 
 afterAll(() => {
-  execSync('npx sequelize-cli db:migrate:undo:all');
+  undoMigrate();
 })
 
 test("Deve verificar o nível de acesso do usuário e autorizar quando estiver no nível passado", async () => {
