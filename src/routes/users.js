@@ -6,6 +6,7 @@ const validacaoCadastro = require("../validators/cadastroUsuario");
 const routeIdValidator = require("../validators/routeIdValidator");
 const autenticacaoMiddleware = require("../middlewares/autenticacaoMiddleware");
 const autorizacaoMiddleware = require("../middlewares/autorizacaoMiddleware");
+const insereNivel = require("../middlewares/insereNivelMiddleware");
 
 const route = Router();
 
@@ -18,7 +19,7 @@ route.post(
 
 route.use(autenticacaoMiddleware);
 
-route.get("/", autorizacaoMiddleware, usersController.base); // listar todos os usuarios
+route.get("/", insereNivel(["Administrador"]), autorizacaoMiddleware, usersController.base); // listar todos os usuarios
 route.get(
   "/:id",
   routeIdValidator,
