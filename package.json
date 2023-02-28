@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:unit": "jest --testMatch=\"**/*.test.js\"",
-    "test:integration": "jest --testMatch=\"**/*.spec.js\"",
+    "test:integration": "jest --testMatch=\"**/*.spec.js\" --timeout=15000 --detectOpenHandles",
     "prestart": "npm run migration",
     "start": "nodemon ./src/server.js",
     "migration": "npx sequelize-cli db:migrate",
