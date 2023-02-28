@@ -22,12 +22,14 @@ route.use(autenticacaoMiddleware);
 route.get("/", insereNivel(["Administrador"]), autorizacaoMiddleware, usersController.base); // listar todos os usuarios
 route.get(
   "/:id",
+  insereNivel(["Administrador"]),
   routeIdValidator,
   validatorMiddleware,
   autorizacaoMiddleware,
   usersController.buscarUmUsuario
 ); // implementado
 route.patch("/:id",
+  insereNivel(["Administrador"]),
   routeIdValidator,
   validatorMiddleware,
   autorizacaoMiddleware, usersController.atualizar); // atualizar um usuario

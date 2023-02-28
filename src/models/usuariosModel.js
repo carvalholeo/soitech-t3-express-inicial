@@ -74,7 +74,7 @@ async function excluirUsuario(id) {
 
 async function atualizarUsuario(id, objeto) {
   try {
-    await Usuario.update(objeto, { where: { id } });
+    return await Usuario.update(objeto, { where: { id } });
   } catch (error) {
     console.trace(error);
   }

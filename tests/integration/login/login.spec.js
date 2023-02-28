@@ -80,4 +80,38 @@ describe("Dado um usuário logado", () => {
         done();
       });
   });
+
+  test("deve ser capaz de editar um usuário", (done) => {
+    request(app)
+      .patch("/users/1")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        nome: "Etevaldo",
+      })
+      .expect(302)
+      .end((error, response) => {
+        if (error) {
+          done(error);
+        }
+
+        done();
+      });
+  });
+
+  test("o usuário deve ser capaz de acessar um usuário", (done) => {
+    request(app)
+      .get("/users/1")
+      .set("Authorization", `Bearer ${token}`)
+      .send()
+      .expect(200)
+      .end((error, response) => {
+        if (error) {
+          done(error);
+        }
+
+        expect(response.body).toHaveProperty("nome", "Etevaldo");
+
+        done();
+      });
+  });
 });

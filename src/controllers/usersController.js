@@ -9,8 +9,8 @@ const usersController = {
     res.json(usuarios)
   },
   buscarUmUsuario: async (req, res) => {
-    const {idDoUsuario} = req.params;
-    const usuario = await buscarUmUsuario(idDoUsuario);
+    const {id} = req.params;
+    const usuario = await buscarUmUsuario(id);
 
     res.json(usuario)
   },
@@ -32,7 +32,7 @@ const usersController = {
   },
   atualizar: async(req, res) => {
     const objetoDoUsuario = req.body;
-    const { idDoUsuario } = req.params;
+    const { id } = req.params;
 
     if (objetoDoUsuario.senha) {
       objetoDoUsuario.senha = bcrypt.hashSync(req.body.senha, 12);
@@ -46,8 +46,8 @@ const usersController = {
       objetoDoUsuario = undefined;
     }
 
-    await atualizarUsuario(idDoUsuario, objetoDoUsuario);
-    return res.json(`Usuário com id ${idDoUsuario} atualizado com sucesso`);
+    await atualizarUsuario(id, objetoDoUsuario);
+    return res.redirect(`/users/${id}`)
   },
   delete: async (req, res) => {
     const {idDoUsuario} = req.params;
