@@ -11,7 +11,9 @@
     "start": "nodemon ./src/server.js",
     "migration": "npx sequelize-cli db:migrate",
     "postmigraton": "npx sequelize-cli db:seed:all",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "version": "npm it",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [],
   "author": "",
