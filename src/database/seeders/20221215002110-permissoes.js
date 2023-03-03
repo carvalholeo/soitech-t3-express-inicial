@@ -1,8 +1,6 @@
-"use strict";
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface) {
     /**
      * Add seed commands here.
      *
@@ -10,10 +8,10 @@ module.exports = {
      *
      */
     await queryInterface.bulkInsert(
-      "Permissoes",
+      'Permissoes',
       [
         {
-          nome_permissao: "Administrador",
+          nome_permissao: 'Administrador',
           administrar_servicos: true,
           alterar_tecnico: true,
           alterar_ordem: true,
@@ -34,11 +32,11 @@ module.exports = {
           updatedAt: new Date(),
         },
       ],
-      {}
+      {},
     );
   },
 
-  async down(queryInterface, Sequelize) {
+  async down() {
     /**
      * Add commands to revert seed here.
      *

@@ -2,7 +2,7 @@ const doMigrate = require('../../global/doMigrate');
 const doSeed = require('../../global/doSeed');
 const undoMigrate = require('../../global/undoMigrate');
 
-const autorizacaoMiddleware = require("../../../src/middlewares/autorizacaoMiddleware");
+const autorizacaoMiddleware = require('../../../src/middlewares/autorizacaoMiddleware');
 
 
 beforeAll(() => {

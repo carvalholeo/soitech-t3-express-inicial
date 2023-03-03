@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class ChamadoEOrdem extends Model {
     /**
@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       ChamadoEOrdem.belongsTo(models.Servico, {
         foreignKey: 'id_servico',
-        as: 'pivot_servico'
+        as: 'pivot_servico',
       });
 
       ChamadoEOrdem.belongsTo(models.OrdensDeServico, {
         foreignKey: 'id_ordem',
-        as: 'pivot_ordem'
+        as: 'pivot_ordem',
       });
     }
   }
@@ -31,13 +31,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-    }
+    },
   }, {
     sequelize,
     modelName: 'ChamadoEOrdem',
     freezeTableName: true,
     tableName: 'ChamadosEOrdens',
-    timestamps: false
+    timestamps: false,
   });
 
   ChamadoEOrdem.removeAttribute('id');

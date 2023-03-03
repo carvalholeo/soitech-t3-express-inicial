@@ -4,7 +4,7 @@ const {
   buscarUmCliente,
   excluirCliente,
   atualizarCliente,
-} = require("../models/clientesModel");
+} = require('../models/clientesModel');
 
 const clienteController = {
   listarTodos: async (req, res) => {
@@ -19,18 +19,18 @@ const clienteController = {
   criarCliente: async (req, res) => {
     const novoCliente = req.body;
     await cadastrarCliente(novoCliente);
-    res.json("cliente criado");
+    res.json('cliente criado');
   },
   atualizarCliente: async (req, res) => {
     const { id } = req.params;
     const objeto = req.body;
     await atualizarCliente(id, objeto);
-    res.json("cliente atualizado");
+    res.json('cliente atualizado');
   },
   apagarCliente: async (req, res) => {
     const { id } = req.params;
     await excluirCliente(id);
-    res.json("cliente excluído");
+    res.json('cliente excluído');
   },
 };
 

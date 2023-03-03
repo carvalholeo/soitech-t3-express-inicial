@@ -1,8 +1,7 @@
-"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("OrdensDeServicos", {
+    await queryInterface.createTable('OrdensDeServicos', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -26,8 +25,8 @@ module.exports = {
         references: {
           model: 'Usuarios',
           key: 'id',
-          onDelete: 'RESTRICT'
-        }
+          onDelete: 'RESTRICT',
+        },
       },
       id_cadastrante: {
         type: Sequelize.INTEGER,
@@ -35,8 +34,8 @@ module.exports = {
         references: {
           model: 'Usuarios',
           key: 'id',
-          onDelete: 'RESTRICT'
-        }
+          onDelete: 'RESTRICT',
+        },
       },
       id_cliente: {
         type: Sequelize.INTEGER,
@@ -44,8 +43,8 @@ module.exports = {
         references: {
           model: 'Clientes',
           key: 'id',
-          onDelete: 'CASCADE'
-        }
+          onDelete: 'CASCADE',
+        },
       },
       status_da_ordem: {
         type: Sequelize.INTEGER,
@@ -54,8 +53,8 @@ module.exports = {
         references: {
           model: 'Status_Ordens',
           key: 'id',
-          onDelete: 'RESTRICT'
-        }
+          onDelete: 'RESTRICT',
+        },
       },
       createdAt: {
         allowNull: false,
@@ -68,6 +67,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("OrdensDeServicos");
+    await queryInterface.dropTable('OrdensDeServicos');
   },
 };

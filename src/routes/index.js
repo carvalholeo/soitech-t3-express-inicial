@@ -8,7 +8,6 @@ const servicosRoutes = require('./servicos');
 
 const contatoController = require('../controllers/contatoController');
 
-
 const route = Router();
 
 route.get('/contato', contatoController.paginaContato);
@@ -18,6 +17,5 @@ route.use('/users', userRoutes)
   .use('/clientes', clientesRoutes)
   .use('/login', loginRoutes)
   .use('/servicos', servicosRoutes);
-
 
 module.exports = route;

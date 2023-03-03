@@ -1,9 +1,9 @@
-function insereNivel(array_permissoes) {
-
-  return function(req, res, next) {
-    req.nivel = array_permissoes;
+function insereNivel(arrayPermissoes) {
+  // eslint-disable-next-line func-names
+  return function (req, res, next) {
+    req.nivel = arrayPermissoes;
     next();
-  }
+  };
 }
 
 module.exports = insereNivel;

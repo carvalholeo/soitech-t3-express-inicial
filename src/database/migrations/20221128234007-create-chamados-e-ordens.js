@@ -1,4 +1,3 @@
-'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -10,8 +9,8 @@ module.exports = {
         references: {
           model: 'OrdensDeServicos',
           key: 'id',
-          onDelete: 'CASCADE'
-        }
+          onDelete: 'CASCADE',
+        },
       },
       id_servico: {
         type: Sequelize.INTEGER,
@@ -20,12 +19,12 @@ module.exports = {
         references: {
           model: 'Servicos',
           key: 'id',
-          onDelete: 'RESTRICT'
-        }
-      }
+          onDelete: 'RESTRICT',
+        },
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('ChamadosEOrdens');
-  }
+  },
 };

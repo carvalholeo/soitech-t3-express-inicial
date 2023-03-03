@@ -17,31 +17,39 @@ const route = Router();
 route.use(autenticacaoMiddleware);
 
 route.get('/', ordensDeServicosController.base);
-route.get('/:id',
+route.get(
+  '/:id',
   insereNivel(['Administrador', 'Backoffice', 'Diretoria', 'Técnico', 'Cliente']),
   autorizacaoMiddleware,
   routeIdValidator,
   validator,
-  ordensDeServicosController.buscar);
+  ordensDeServicosController.buscar,
+);
 
-route.post('/',
+route.post(
+  '/',
   insereNivel(['Administrador', 'Backoffice', 'Diretoria']),
   autorizacaoMiddleware,
   novaOrdemValidator,
   validator,
-  ordensDeServicosController.cadastrar);
+  ordensDeServicosController.cadastrar,
+);
 
-route.patch('/:id',
+route.patch(
+  '/:id',
   insereNivel(['Administrador', 'Backoffice', 'Diretoria', 'Técnico']),
   autorizacaoMiddleware,
   routeIdValidator,
   atualizaOrdemServicoValidator,
   validator,
-  ordensDeServicosController.atualizar);
+  ordensDeServicosController.atualizar,
+);
 
-route.delete("/:id",
+route.delete(
+  '/:id',
   routeIdValidator,
   validator,
-  ordensDeServicosController.delete);
+  ordensDeServicosController.delete,
+);
 
 module.exports = route;

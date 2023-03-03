@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Cliente extends Model {
     /**
@@ -13,21 +13,21 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Cliente.hasMany(models.OrdensDeServico, {
         foreignKey: 'id_cliente',
-        as: 'clientes_ordensdeservico'
+        as: 'clientes_ordensdeservico',
       });
     }
   }
   Cliente.init({
     nome: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
     },
     documento: {
       type: DataTypes.STRING(14),
       allowNull: false,
-      unique: true
+      unique: true,
     },
-    dataNascimento: DataTypes.DATEONLY
+    dataNascimento: DataTypes.DATEONLY,
   }, {
     sequelize,
     modelName: 'Cliente',

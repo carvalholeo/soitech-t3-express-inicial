@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class OrdensDeServico extends Model {
     /**
@@ -13,29 +13,29 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       OrdensDeServico.belongsTo(models.Status_Ordem, {
         foreignKey: 'status_da_ordem',
-        as: 'ordensdeservicos_statusordens'
+        as: 'ordensdeservicos_statusordens',
       });
 
       OrdensDeServico.belongsTo(models.Cliente, {
         foreignKey: 'id_cliente',
-        as: 'ordensdeservico_clientes'
+        as: 'ordensdeservico_clientes',
       });
 
       OrdensDeServico.belongsTo(models.Usuario, {
         foreignKey: 'id_cadastrante',
-        as: 'ordensdeservico_cadastrante'
+        as: 'ordensdeservico_cadastrante',
       });
 
       OrdensDeServico.belongsTo(models.Usuario, {
         foreignKey: 'id_tecnico',
-        as: 'ordensdeservico_tecnico'
+        as: 'ordensdeservico_tecnico',
       });
 
       OrdensDeServico.belongsToMany(models.Servico, {
         through: models.ChamadoEOrdem,
         foreignKey: 'id_ordem',
         // targetKey: 'id_ordem',
-        as: 'ordens_servicos'
+        as: 'ordens_servicos',
       });
     }
   }
@@ -43,27 +43,27 @@ module.exports = (sequelize, DataTypes) => {
     data_abertura: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
-      allowNull: false
+      allowNull: false,
     },
     solicitacao: DataTypes.STRING(100),
     data_encerramento: DataTypes.DATE,
     id_tecnico: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     id_cadastrante: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     id_cliente: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     status_da_ordem: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 1
-    }
+      defaultValue: 1,
+    },
   }, {
     sequelize,
     modelName: 'OrdensDeServico',

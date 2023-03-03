@@ -1,11 +1,11 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 function autenticacaoMiddleware(req, res, next) {
   // if(!req.app.locals.estaLogado) {
   //   return res.status(401).json('Usuário não está autenticado. Faça login e tente novamente');
   // }
 
-  const {authorization = ''} = req.headers;
+  const { authorization = '' } = req.headers;
 
   const partes = authorization.split(' ');
   const [esquema, token] = partes;
@@ -25,9 +25,8 @@ function autenticacaoMiddleware(req, res, next) {
   try {
     const conteudo = jwt.verify(token, process.env.CHAVE_JWT);
     req.conteudo = conteudo;
-    next();
+    return next();
   } catch (error) {
-    console.trace(error);
     return res.status(401).json('Chave inválida. Faça login novamente');
   }
 }

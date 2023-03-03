@@ -1,11 +1,11 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const {buscarUsuarioParaLogin} = require('../models/usuariosModel');
+const { buscarUsuarioParaLogin } = require('../models/usuariosModel');
 
 const loginController = {
   fazerLogin: async (req, res) => {
-    const {usuario, senha} = req.body;
+    const { usuario, senha } = req.body;
     const usuarioDB = await buscarUsuarioParaLogin(usuario);
 
     if (!usuarioDB) {
@@ -22,11 +22,11 @@ const loginController = {
     const usuarioParse = JSON.parse(JSON.stringify(usuarioDB));
 
     const token = jwt.sign(usuarioParse, process.env.CHAVE_JWT, {
-      expiresIn: '5 minutes'
+      expiresIn: '5 minutes',
     });
 
-    return res.json({token});
-  }
-}
+    return res.json({ token });
+  },
+};
 
 module.exports = loginController;

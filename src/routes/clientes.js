@@ -13,10 +13,10 @@ router.use((req, res, next) => {
   req.nivel = [
     'Administrador',
     'Backoffice',
-    'Diretoria'
+    'Diretoria',
   ];
   next();
-})
+});
 
 router
   .use(autenticacaoMiddleware)
@@ -24,7 +24,7 @@ router
   .get('/', clienteController.listarTodos)
   .get('/:id', routeIdValidator, validatorMiddleware, clienteController.cliente)
   .post('/', clienteController.criarCliente)
-  .patch('/:id', routeIdValidator, validatorMiddleware,clienteController.atualizarCliente)
+  .patch('/:id', routeIdValidator, validatorMiddleware, clienteController.atualizarCliente)
   .delete('/:id', routeIdValidator, validatorMiddleware, clienteController.apagarCliente);
 
 module.exports = router;

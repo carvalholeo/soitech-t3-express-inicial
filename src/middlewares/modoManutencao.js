@@ -4,9 +4,9 @@ function modoManutencaoMiddleware(req, res, next) {
   if (+ESTA_EM_MANUTENCAO) {
     return res
       .status(503)
-      .json("Oops, sistema em manutenção. Vá ler um livro.");
+      .json('Oops, sistema em manutenção. Vá ler um livro.');
   }
-  next();
+  return next();
 }
 
 module.exports = modoManutencaoMiddleware;

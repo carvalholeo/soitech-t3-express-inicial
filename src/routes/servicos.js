@@ -1,6 +1,6 @@
-const { Router } = require("express");
+const { Router } = require('express');
 
-const servicosController = require("../controllers/servicosController");
+const servicosController = require('../controllers/servicosController');
 const autenticacaoMiddleware = require('../middlewares/autenticacaoMiddleware');
 const validatorMiddleware = require('../middlewares/validatorMiddleware');
 
@@ -10,12 +10,12 @@ const criarServicoValidator = require('../validators/servicosValidator/criarServ
 
 const route = Router();
 
-// route.use(autenticacaoMiddleware);
+route.use(autenticacaoMiddleware);
 
-route.get("/", servicosController.base);
-route.get("/:id", routeIdValidator, validatorMiddleware, servicosController.buscar);
-route.post("/", criarServicoValidator, validatorMiddleware, servicosController.cadastrar);
-route.patch("/:id", routeIdValidator, updateServicoValidator, validatorMiddleware, servicosController.atualizar);
-route.delete("/:id", routeIdValidator, validatorMiddleware, servicosController.delete);
+route.get('/', servicosController.base);
+route.get('/:id', routeIdValidator, validatorMiddleware, servicosController.buscar);
+route.post('/', criarServicoValidator, validatorMiddleware, servicosController.cadastrar);
+route.patch('/:id', routeIdValidator, updateServicoValidator, validatorMiddleware, servicosController.atualizar);
+route.delete('/:id', routeIdValidator, validatorMiddleware, servicosController.delete);
 
 module.exports = route;

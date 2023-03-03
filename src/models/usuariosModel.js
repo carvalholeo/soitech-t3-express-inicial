@@ -1,25 +1,25 @@
-const { Op } = require("sequelize");
-
-const { Usuario } = require("../database/repository");
+const { Usuario } = require('../database/repository');
 
 /**
  * Método de cadastro de usuários no sistema
- * @param {JSON} objetoDeCadastro Objeto contendo nome, email, CPF, telefone, usuário, data de nascimento e senha
+ * @param {JSON} objetoDeCadastro Objeto contendo nome, email, CPF, telefone,
+ * usuário, data de nascimento e senha
  * @return {JSON} Objeto enviado anteriormente, mas com id do banco de dados
  */
 async function cadastroUsuario(objetoDeCadastro) {
   try {
-    const { nome, email, senha, cpf, telefone, usuario, dataNascimento } =
-      objetoDeCadastro;
+    const {
+      nome, email, senha, cpf, telefone, usuario, dataNascimento,
+    } = objetoDeCadastro;
 
     const novoUsuario = await Usuario.create({
-      nome: nome,
-      email: email,
-      senha: senha,
-      cpf: cpf,
-      telefone: telefone,
-      usuario: usuario,
-      dataNascimento: dataNascimento,
+      nome,
+      email,
+      senha,
+      cpf,
+      telefone,
+      usuario,
+      dataNascimento,
       nivel_id: 1,
       estaAtivo: true,
     });
@@ -28,7 +28,6 @@ async function cadastroUsuario(objetoDeCadastro) {
 
     return novoUsuario;
   } catch (error) {
-    console.trace(error);
     if (error?.original?.code === 'ER_NO_REFERENCED_ROW_2') {
       throw new RangeError('Nível de usuário não existe');
     }
@@ -39,15 +38,14 @@ async function cadastroUsuario(objetoDeCadastro) {
 async function buscarUmUsuario(id) {
   try {
     const usuario = await Usuario.findOne({
-      where: { id: id },
+      where: { id },
       include: {
-        association: "usuario_permissao",
+        association: 'usuario_permissao',
       },
     });
 
     return usuario;
   } catch (error) {
-    console.trace(error);
     return error;
   }
 }
@@ -58,16 +56,14 @@ async function listaDeUsuarios() {
 
     return usuarios;
   } catch (error) {
-    console.trace(error);
     return error;
   }
 }
 
 async function excluirUsuario(id) {
   try {
-    await Usuario.destroy({ where: { id: id } });
+    return await Usuario.destroy({ where: { id } });
   } catch (error) {
-    console.trace(error);
     return error;
   }
 }
@@ -76,7 +72,7 @@ async function atualizarUsuario(id, objeto) {
   try {
     return await Usuario.update(objeto, { where: { id } });
   } catch (error) {
-    console.trace(error);
+    return error;
   }
 }
 
@@ -84,13 +80,13 @@ async function buscarUsuarioParaLogin(usuario) {
   try {
     const usuarioUnico = await Usuario.findOne({
       where: {
-        usuario: usuario,
+        usuario,
       },
     });
 
     return usuarioUnico;
   } catch (error) {
-    console.trace(error);
+    return error;
   }
 }
 

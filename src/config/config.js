@@ -1,15 +1,16 @@
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
+
 dotenv.config();
 
-const path = require("path");
+const path = require('path');
 
 const {
-  DB_DIALETO = "mysql",
+  DB_DIALETO = 'mysql',
   DB_PORTA = 3306,
-  DB_SERVIDOR = "127.0.0.1",
-  DB_USUARIO = "root",
+  DB_SERVIDOR = '127.0.0.1',
+  DB_USUARIO = 'root',
   DB_SENHA = null,
-  DB_BANCO_DE_DADOS = "easy_system",
+  DB_BANCO_DE_DADOS = 'easy_system',
 } = process.env;
 
 module.exports = {
@@ -22,8 +23,8 @@ module.exports = {
     port: +DB_PORTA,
   },
   test: {
-    dialect: "sqlite",
-    storage: path.join(__dirname, "..", "database", "database.sqlite"),
+    dialect: 'sqlite',
+    storage: path.join(__dirname, '..', 'database', 'database.sqlite'),
   },
   production: {
     username: DB_USUARIO,

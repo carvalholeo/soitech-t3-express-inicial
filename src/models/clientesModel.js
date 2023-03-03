@@ -1,9 +1,8 @@
-const { Cliente } = require("../database/repository");
+const { Cliente } = require('../database/repository');
 
 async function cadastrarCliente(objetoDeCadastro) {
   try {
-    const { nome, documento, dataNascimento } =
-      objetoDeCadastro;
+    const { nome, documento, dataNascimento } = objetoDeCadastro;
 
     const novoCliente = await Cliente.create({
       nome,
@@ -13,7 +12,6 @@ async function cadastrarCliente(objetoDeCadastro) {
 
     return novoCliente;
   } catch (error) {
-    console.trace(error);
     throw new Error('Erro ao cadastrar cliente');
   }
 }
@@ -21,15 +19,14 @@ async function cadastrarCliente(objetoDeCadastro) {
 async function buscarUmCliente(id) {
   try {
     const cliente = await Cliente.findOne({
-      where: { id: id },
+      where: { id },
       include: {
-        association: "clientes_ordensdeservico",
+        association: 'clientes_ordensdeservico',
       },
     });
 
     return cliente;
   } catch (error) {
-    console.trace(error);
     return error;
   }
 }
@@ -40,25 +37,23 @@ async function listarClientes() {
 
     return clientes;
   } catch (error) {
-    console.trace(error);
     return error;
   }
 }
 
 async function excluirCliente(id) {
   try {
-    await Cliente.destroy({ where: { id: id } });
+    return await Cliente.destroy({ where: { id } });
   } catch (error) {
-    console.trace(error);
     return error;
   }
 }
 
 async function atualizarCliente(id, objeto) {
   try {
-    await Cliente.update(objeto, { where: { id } });
+    return await Cliente.update(objeto, { where: { id } });
   } catch (error) {
-    console.trace(error);
+    return error;
   }
 }
 
@@ -67,5 +62,5 @@ module.exports = {
   cadastrarCliente,
   buscarUmCliente,
   excluirCliente,
-  atualizarCliente
-}
+  atualizarCliente,
+};

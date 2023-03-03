@@ -1,6 +1,7 @@
 const testEnvironment = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
 
 const dotenv = require('dotenv');
+
 dotenv.config({ path: testEnvironment });
 const express = require('express');
 
@@ -24,7 +25,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  const {authorization = ''} = req.headers;
+  const { authorization = '' } = req.headers;
   const partes = authorization.split(' ');
   const [, token] = partes;
 
@@ -32,7 +33,7 @@ app.use((req, res, next) => {
     return res.status(401).json('Token inválido');
   }
 
-  next();
+  return next();
 });
 
 app.use(contadorDeAcessos);

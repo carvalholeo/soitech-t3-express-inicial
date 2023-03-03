@@ -1,7 +1,8 @@
-'use strict';
+/* eslint-disable camelcase */
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Status_Ordem extends Model {
     /**
@@ -12,21 +13,21 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Status_Ordem.hasMany(models.OrdensDeServico, {
         foreignKey: 'status_da_ordem',
-        as: 'statusordens_servicos'
+        as: 'statusordens_servicos',
       });
     }
   }
   Status_Ordem.init({
     nome: {
       type: DataTypes.STRING(45),
-      allowNull: false
-    }
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Status_Ordem',
     tableName: 'Status_Ordens',
     freezeTableName: true,
-    timestamps: false
+    timestamps: false,
   });
   return Status_Ordem;
 };
